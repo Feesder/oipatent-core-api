@@ -37,3 +37,11 @@ func (r *IpObjectPostgres) GetIpObjectsByUserId(userId string) ([]*entity.IpObje
 	}
 	return ipObjects, nil
 }
+
+func (r *IpObjectPostgres) GetIpObjectsById(id string) (*entity.IpObject, error) {
+	query := fmt.Sprintf("SELECT id, user_id, title, description, jurisdiction, patent_type, created_at, updated_at FROM %s WHERE id = $1", ipObjectTable)
+	var ipObject entity.IpObject
+	err := r.db.Get(&ipObject, query, id)
+
+	return &ipObject, err
+}

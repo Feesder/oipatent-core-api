@@ -50,13 +50,13 @@ func (h *Handler) signUp(c *gin.Context) {
 	maxAge := int(time.Until(tokens.RefreshExpires).Seconds())
 	h.Services.SetCookie(c, "refresh_token", tokens.RefreshToken, maxAge)
 
-	c.JSON(http.StatusOK, gin.H{
+	Response(c, gin.H{
 		"auth": &dto.TokenResponse{
 			AccessToken:   tokens.AccessToken,
 			TokenType:     "Bearer",
 			AccessExpires: tokens.AccessExpires,
 		},
-		"data": user,
+		"user": user,
 	})
 }
 
@@ -98,13 +98,13 @@ func (h *Handler) signIn(c *gin.Context) {
 	maxAge := int(time.Until(tokens.RefreshExpires).Seconds())
 	h.Services.SetCookie(c, "refresh_token", tokens.RefreshToken, maxAge)
 
-	c.JSON(http.StatusOK, gin.H{
+	Response(c, gin.H{
 		"auth": &dto.TokenResponse{
 			AccessToken:   tokens.AccessToken,
 			TokenType:     "Bearer",
 			AccessExpires: tokens.AccessExpires,
 		},
-		"data": user,
+		"user": user,
 	})
 }
 
@@ -145,13 +145,13 @@ func (h *Handler) Refresh(c *gin.Context) {
 	maxAge := int(time.Until(tokens.RefreshExpires).Seconds())
 	h.Services.SetCookie(c, "refresh_token", tokens.RefreshToken, maxAge)
 
-	c.JSON(http.StatusOK, gin.H{
+	Response(c, gin.H{
 		"auth": &dto.TokenResponse{
 			AccessToken:   tokens.AccessToken,
 			TokenType:     "Bearer",
 			AccessExpires: tokens.AccessExpires,
 		},
-		"data": user,
+		"user": user,
 	})
 }
 
@@ -181,7 +181,7 @@ func (h *Handler) me(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{
-		"data": user,
+	Response(c, gin.H{
+		"user": user,
 	})
 }

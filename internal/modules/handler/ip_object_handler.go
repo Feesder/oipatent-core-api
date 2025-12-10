@@ -36,8 +36,8 @@ func (h *Handler) createIpObject(c *gin.Context) {
 
 	log.Info(fmt.Sprintf("ip object created by id: %s", ipObject.Id))
 
-	c.JSON(http.StatusOK, gin.H{
-		"data": ipObject,
+	Response(c, gin.H{
+		"ip_object": ipObject,
 	})
 }
 
@@ -48,14 +48,33 @@ func (h *Handler) getIpObjectByUserId(c *gin.Context) {
 
 	userId := c.Param("id")
 
-	ipObject, err := h.Services.GetIpObjectsByUserId(userId)
+	ipObjects, err := h.Services.GetIpObjectsByUserId(userId)
 	if err != nil {
 		log.Error(fmt.Sprintf("get ip object error: %s", err.Error()))
 		NewErrorResponse(c, http.StatusBadRequest, err.Error())
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{
-		"data": ipObject,
+	Response(c, gin.H{
+		"ip_objects": ipObjects,
+	})
+}
+
+func (h *Handler) getIpObjectById(c *gin.Context) {
+	op := "handler.ip_object.handler.getIpObjectById"
+
+	log := logrus.WithField("op", op)
+
+	ipObjectId := c.Param("id")
+
+	ipObject, err := h.Services.GetIpObjectsById(ipObjectId)
+	if err != nil {
+		log.Error(fmt.Sprintf("get ip object error: %s", err.Error()))
+		NewErrorResponse(c, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	Response(c, gin.H{
+		"ip_object": ipObject,
 	})
 }

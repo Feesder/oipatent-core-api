@@ -27,6 +27,7 @@ type User interface {
 type IpObject interface {
 	CreateIpObject(ipObject dto.CreateIpObjectDto) (*dto.IpObjectDto, error)
 	GetIpObjectsByUserId(userId string) ([]*dto.IpObjectDto, error)
+	GetIpObjectsById(id string) (*dto.IpObjectDto, error)
 }
 
 type Service struct {

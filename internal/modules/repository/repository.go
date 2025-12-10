@@ -16,6 +16,7 @@ type UserRepository interface {
 type IpObject interface {
 	CreateIpObject(ipObject *entity.IpObject) error
 	GetIpObjectsByUserId(userId string) ([]*entity.IpObject, error)
+	GetIpObjectsById(id string) (*entity.IpObject, error)
 }
 
 type Repository struct {

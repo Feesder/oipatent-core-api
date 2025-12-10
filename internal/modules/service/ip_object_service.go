@@ -44,3 +44,12 @@ func (s *IpObjectService) GetIpObjectsByUserId(userId string) ([]*dto.IpObjectDt
 
 	return mapper.MapIpObjectEntitiesToIpObjectDtos(ipObjectEntities), nil
 }
+
+func (s *IpObjectService) GetIpObjectsById(id string) (*dto.IpObjectDto, error) {
+	ipObjectEntitie, err := s.repository.GetIpObjectsById(id)
+	if err != nil {
+		return nil, err
+	}
+
+	return mapper.MapIpObjectEntityToIpObjectDto(ipObjectEntitie), nil
+}

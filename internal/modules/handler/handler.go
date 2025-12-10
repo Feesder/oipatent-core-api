@@ -55,6 +55,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		ipObject.Use(h.UserIdentity)
 		ipObject.POST("", h.createIpObject)
 		ipObject.GET("/user/:id", h.getIpObjectByUserId)
+		ipObject.GET("/:id", h.getIpObjectById)
 	}
 
 	return router
