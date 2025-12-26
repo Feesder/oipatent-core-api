@@ -1,0 +1,25 @@
+env: "local"
+http_server:
+  address: "localhost:8080"
+  timeout: 4s
+  idle_timeout: 60s
+database:
+  host: ""
+  username: ""
+  password: ""
+  dbname: ""
+  port: 5432
+  sslmode: ""
+token:
+  access_secret: ""
+  refresh_secret;: ""
+  access_ttl:
+  refresh_ttl:
+  issuer: ""
+security:
+  salt: ""
+cookie:
+  path: "/"
+  domain: ""
+  secure: false
+  http_only: true
