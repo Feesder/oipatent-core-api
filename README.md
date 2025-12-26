@@ -25,7 +25,7 @@ migrate -path ./schema -database <DATABASE_URL> up
 CONFIG_PATH=./config/local.yaml go run cmd/main.go 
 ```
 
-# Структура проекта
+## Структура проекта
 Проект следует классической многослойной архитектуре
 ```
 oipatent-core-api/
