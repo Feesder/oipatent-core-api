@@ -4,7 +4,7 @@
 
 ## Установка
 
-1. Клонируйте репозиторий: 
+1. Клонирование репозиторий: 
 ```
 git clone https://github.com/Feesder/oipatent-core-api.git
 cd oipatent-core-api
